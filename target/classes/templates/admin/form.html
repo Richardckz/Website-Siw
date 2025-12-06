@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${experience.id != null ? 'Edit Experience' : 'Add Experience'}"></title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body class="admin-bg">
+
+<div class="admin-container">
+    <h1 th:text="${experience.id != null ? 'Edit Experience' : 'Add New Experience'}"></h1>
+
+<form th:action="@{/admin/experience}" th:object="${experience}" method="post" class="experience-card">
+    <label>Role:</label>
+    <input type="text" th:field="*{role}" required/>
+
+    <label>Company:</label>
+    <input type="text" th:field="*{company}" required/>
+
+    <label>Start Date:</label>
+    <input type="date" th:field="*{startDate}" required/>
+
+    <label>End Date:</label>
+    <input type="date" th:field="*{endDate}"/>
+
+    <label>Description:</label>
+    <textarea th:field="*{description}"></textarea>
+
+    <button type="submit" class="btn edit">Save</button>
+</form>
+
+<a th:href="@{/admin/experience}" class="back">← Back to List</a>
+
+</div>
+
+</body>
+</html>

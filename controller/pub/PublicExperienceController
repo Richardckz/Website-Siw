@@ -1,0 +1,24 @@
+package com.Siw.personalProject.controller.pub;
+
+import com.Siw.personalProject.service.ExperienceService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class PublicExperienceController {
+
+    private final ExperienceService service;
+
+    public PublicExperienceController(ExperienceService service) {
+        this.service = service;
+    }
+
+@GetMapping("/experience")
+public String showExperience(Model model) {
+    model.addAttribute("experiences", service.findAll());
+    return "index";  // punta a index.html
+}
+
+
+}
