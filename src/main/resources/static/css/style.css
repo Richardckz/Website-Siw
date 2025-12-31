@@ -1,0 +1,950 @@
+/*--------------------------------
+  GLOBAL
+--------------------------------*/
+/* Theme variables for quick theming and consistency */
+:root {
+    --bg-color: #2e3e55;
+    --text-color: #333;
+    --primary: #ff7700;
+    --accent: #ea6f22;
+    --card-bg: #fdfdfd;
+    --overlay: rgba(0,0,0,0.35);
+}
+
+body {
+    background-color: var(--bg-color); /* sfondo */
+    font-family: 'Nobile', sans-serif; /* font */
+    margin: 0; /* reset margini */
+    padding: 0; /* reset padding */
+    color: var(--text-color); /* testo base */
+} 
+
+a {
+    text-decoration: none; /* no underline */
+    transition: all 0.3s ease-in-out; /* animazione */
+}
+
+/*--------------------------------
+  NAVBAR
+--------------------------------*/
+/* Sticky (fixed) top navigation with subtle glass blur and hover effects */
+.navbar {
+    background: linear-gradient(135deg, #b8b8b8, #e2e2e2, #bfbfbf); /* sfondo metallico */
+    border: none; /* nessun bordo */
+    letter-spacing: 0.5px; /* spazio lettere */
+    text-transform: uppercase; /* maiuscole */
+    position: fixed; /* fisso in alto */
+    width: 100%; /* piena larghezza */
+    top: 0;
+    z-index: 1000; /* sopra altri elementi */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.25); /* ombra */
+    backdrop-filter: blur(6px); /* effetto vetro */
+}
+
+.navbar a {
+    color: #000000; /* colore link */
+    padding: 15px 20px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #fff; /* hover bianco */
+    transform: translateY(-3px); /* effetto salita */
+}
+
+.navbar-collapse {
+    text-align: right; /* allineamento mobile */
+}
+
+/*--------------------------------
+  LANDING / JUMBOTRON
+--------------------------------*/
+#landing-view {
+    position: relative;
+    height: 100vh; /* altezza viewport */
+    width: 100%;
+    background-image: url('../img/Fourth.jpg'); /* sfondo */
+    background-size: contain;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center; /* centra verticalmente */
+    justify-content: center; /* centra orizzontalmente */
+    margin-bottom: 0 !important;
+    padding-bottom: 40px !important;
+    color: #ffffff;
+}
+
+#landing-view::after {
+    content: '';
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    background: rgba(0,0,0,0.35); /* overlay scuro */
+    z-index: 0;
+}
+
+.landing-content {
+    position: relative;
+    z-index: 1; /* sopra overlay */
+    text-align: center;
+}
+
+.landing-content h1,
+.landing-content p {
+    color: #ffffff; /* testo bianco */
+    text-shadow: 0 4px 12px rgba(0,0,0,0.7); /* ombra testo */
+}
+
+.landing-content h1 {
+    font-size: 5em; /* titolo grande */
+    margin: 0;
+}
+
+.landing-content p {
+    font-size: 2em; /* sottotitolo */
+    margin-top: 10px;
+}
+
+/*--------------------------------
+  ABOUT ME
+--------------------------------*/
+#about-me {
+    padding: 30px 20px; /* padding */
+    background-image: url('../img/Second.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #000000;
+    
+}
+
+.about-row {
+    max-width: 900px;
+    margin: auto; /* centrato */
+    font-size: 1.3em;
+    line-height: 1.85; /* leggibilità */
+    text-align: left;
+}
+
+.about-row h2 {
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    font-size: 2.2em;
+    font-weight: 700;
+}
+
+.about-row .about-p {
+    margin: 20px 0;
+    font-weight: 400;
+}
+
+
+/*------------------------------
+  ABOUT ME PICTURE
+------------------------------*/
+/* Minimal, easy-to-edit profile photo styling */
+.profile-photo {
+    width: 260px;
+    height: 260px;
+    border-radius: 60%;
+    background-color: #e9e9e9; /* neutral fallback if image missing */
+    background-size: cover;
+    background-position: center;
+    display: block;
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    .about-row .col-sm-4 { display: flex; align-items: flex-start; justify-content: flex-end; }
+    .profile-photo { margin: 0; }
+}
+
+@media (max-width: 480px) {
+    .profile-photo {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto; /* center on small screens */
+    }
+}
+
+
+
+/*--------------------------------
+  PROJECTS
+--------------------------------*/
+.section-title {
+    font-size: 4em;
+    color: #6f6d6d;
+    font-weight: bold;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+#Projects {
+    background-image: url('../img/Fourth.jpg');
+    background-size: contain;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 40px 20px 50px 20px;
+    text-align: center;
+}
+
+.project-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px; /* reduced gap for better responsiveness */
+    padding: 24px;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    width: 100%;
+    max-width: 520px; /* responsive max width */
+    min-height: 8rem; /* allow variable height */
+    padding: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .project-cards { gap: 20px; padding: 16px; }
+    .card { max-width: 100%; padding: 12px; }
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.card-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #000;
+}
+
+.card-text {
+    font-size: 0.7em;
+    text-align: center;
+    color: #000;
+}
+
+.card i {
+    font-size: 28px;
+    width: 40px;
+    height: 20px;
+    line-height: 40px;
+    text-align: right;
+    margin-top: 10px;
+    color: #000;
+}
+
+/*--------------------------------
+  SKILLS
+--------------------------------*/
+#skills {
+    background-image: url('../img/Second.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 150px 20px;
+    text-align: center;
+    color: #000000;
+}
+
+#skills h1,
+#skills p {
+    font-weight: bold;
+}
+
+.skills-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+}
+
+.skill-circle {
+    position: relative;
+    width: 130px;
+    height: 130px;
+}
+
+.arc-wrapper {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: #2e3e55;
+    overflow: hidden;
+    margin: auto; 
+}
+
+.arc-overlay {
+    width: 110px;
+    height: 110px;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1em;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/*--------------------------------
+  PROGRESS BARS
+--------------------------------*/
+.progress {
+    background-color: #ffffff;
+    border-radius: 18px;
+    height: 18px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    line-height: 18px;
+    color: #ffffff;
+    text-align: right;
+    padding-right: 10px;
+    font-weight: bold;
+    border-radius: 18px;
+    transition: width 1s ease-in-out;
+    text-shadow: 1px 1px 2px rgb(0, 0, 0);
+}
+
+/* Skill colors (single source of truth) */
+.color-1, .color-2, .color-3, .color-4, .color-5, .color-6 { background-color: var(--primary); }
+
+/*--------------------------------*/
+/*          CONTACT SECTION       */
+/*--------------------------------*/
+
+/* Sfondo della sezione contatto (index.html) */
+#contact {
+    background: url('../img/Fourth.jpg') center/cover fixed;
+    padding: 0;
+    margin: 0;
+    color: #fff;
+}
+
+/* Form contatto (index.html) */
+.contact-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.contact-form button {
+    padding: 10px 20px;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.contact-form button:hover {
+    background: #d7d7d7;
+}
+
+/*--------------------------------*/
+/*        MESSAGE CONFIRMATION     */
+/*--------------------------------*/
+
+/* Corpo pagina contact.html */
+body.contact-page {
+    background: url('../img/Fourth.jpg') center/cover repeat;
+    background-size: contain;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Card messaggio con gradient animato */
+.message-container {
+    font-family: 'Poppins', sans-serif;
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    text-align: center;
+    max-width: 500px;
+    color: #fff;
+
+    /* Gradient animato */
+    background: linear-gradient(135deg, #433f46, #000000, #2e3e55, #960ccc);
+    background-size: 400% 400%;
+    animation: fadeInUp 1s forwards, gradientBG 10s ease infinite;
+
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Gradient animato */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Animazione apparizione */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Icona di conferma */
+.message-container .success-icon {
+    font-size: 50px;
+    color: #4caf50;
+    margin-bottom: 15px;
+}
+
+/* Titolo del messaggio */
+.message-container h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+/* Testo del messaggio */
+.message-container p {
+    font-size: 1rem;
+    margin-bottom: 25px;
+    line-height: 1.5;
+    background: none;
+}
+
+/* Pulsante per tornare alla home */
+.btn-back-home {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #3725fc;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-back-home:hover {
+    background-color: #6a11cb;
+    transform: scale(1.05);
+}
+
+/* Responsività */
+@media (max-width: 600px) {
+    .message-container {
+        padding: 30px 20px;
+    }
+
+    .message-container h1 {
+        font-size: 1.5rem;
+    }
+
+    .message-container p {
+        font-size: 0.95rem;
+    }
+}
+
+
+/*--------------------------------
+  EXPERIENCE
+--------------------------------*/
+.experience-row { row-gap: 2rem; column-gap: 2rem; } /* griglia */
+.experience-col { margin-bottom: 3rem; display: flex; justify-content: center; } /* colonna */
+/* experience-card unified further below in Admin section */
+/* styles unified in Admin area to ensure consistent look */ 
+
+/*--------------------------------
+  FOOTER
+--------------------------------*/
+footer {
+    text-align: center;
+    padding: 5px 0;
+    margin: 0;
+    background: #949292;
+    color: #fff;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+footer ul li { display: flex; align-items: center; gap: 5px; }
+footer i, footer .icon { font-size: 14px; color: #333; }
+footer p { margin: 5px 0 0 0; font-size: 12px; }
+
+/*--------------------------------
+  RESPONSIVE
+--------------------------------*/
+@media (max-width: 992px) {
+    #landing-view, #Projects, #skills, #contact { background-attachment: scroll; }
+    .landing-content h1 { font-size: 3em; }
+    .landing-content p { font-size: 1.2em; }
+}
+
+@media (max-width: 768px) {
+    .project-cards, .skills-inner { flex-direction: column; gap: 20px; }
+    .card, .skill-circle { width: 90%; height: auto; }
+}
+
+
+/*==========================
+  LOGIN PAGE
+===========================*/
+.login-bg {
+    background: url('../img/Fourth.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-box {
+    background: rgba(255, 255, 255, 0.85);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+/*==========================
+ADMIN MESSAGES PAGE
+===========================*/
+
+/* Admin container consolidated in the "Experience / Admin" section further below */
+/* (see later .admin-container rule) */
+
+/* Tabelle messaggi */
+.admin-table {
+width: 100%;
+border-collapse: collapse;
+margin-top: 20px;
+background: transparent;
+border-radius: 0;
+overflow: visible;
+box-shadow: none;
+}
+
+.admin-table th,
+.admin-table td {
+padding: 12px 15px;
+border-bottom: 1px solid rgba(255,255,255,0.06);
+text-align: left;
+background: transparent;
+color: #fff;
+}
+
+.admin-table th {
+background: transparent;
+color: rgba(255,255,255,0.9);
+text-transform: uppercase;
+} 
+
+/* Badge stato */
+.badge {
+padding: 5px 10px; /* spazio interno badge */
+border-radius: 5px; /* angoli arrotondati */
+color: #fff; /* white text on dark bg */
+font-size: 12px; /* dimensione testo */
+font-weight: 600; /* semi-bold */
+}
+
+.read {
+background-color: rgba(40,167,69,0.9); /* verde per letto */
+}
+
+.unread,
+.unread-status {
+background-color: rgba(220,53,69,0.9); /* rosso per non letto */
+} 
+
+/* Bottoni azioni */
+.btn {
+padding: 6px 12px; /* spazio interno pulsante */
+border-radius: 4px; /* angoli leggermente arrotondati */
+color: white; /* testo bianco */
+text-decoration: none; /* rimuove sottolineatura */
+transition: 0.3s; /* animazione transizione */
+font-size: 0.9em; /* dimensione testo pulsante */
+display: flex; /* flex per distanza tra pulsanti */
+gap: 30px; /* distanza tra i pulsanti */
+}
+
+.btn:hover {
+opacity: 0.60; /* effetto hover semitrasparente */
+}
+
+.view {
+background-color: #007bff; /* blu visualizza */
+}
+
+.delete {
+background-color: #9a0a00; /* rosso cancella */
+}
+
+.back {
+background-color: #8b9fb0; /* grigio indietro */
+}
+
+.unread-btn {
+background-color: #ffc107; /* giallo non letto */
+color: black; /* testo nero */
+}
+
+/* Card per dettaglio messaggio */
+.message-card {
+border: 1px solid rgba(255,255,255,0.06); /* subtle border */
+border-radius: 12px; /* angoli arrotondati */
+padding: 25px; /* spazio interno */
+margin-top: 20px; /* margine sopra */
+background-color: #ffffff; /* sfondo bianco */
+box-shadow: 0 6px 20px rgba(0,0,0,0.12); /* softer shadow */
+transition: transform 0.15s, box-shadow 0.15s; /* effetto hover */
+}
+
+.message-card:hover {
+transform: translateY(-2px); /* slight lift */
+box-shadow: 0 10px 25px rgba(216, 205, 205, 0.18); /* stronger shadow on hover */
+}
+
+/* Experience form/card to match dashboard aesthetic */
+.experience-card {
+background: #ffffff;
+color: #111;
+padding: 20px;
+border-radius: 12px;
+box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+max-width: 900px;
+margin: 0 auto 20px auto;
+}
+
+.experience-card input,
+.experience-card textarea {
+width: 100%;
+padding: 10px;
+border: 1px solid #e6e6e6;
+border-radius: 6px;
+margin-bottom: 12px;
+}
+
+.experience-card .btn.edit {
+background: #2e3e55;
+color: #fff;
+border: none;
+padding: 10px 14px;
+border-radius: 8px;
+}
+
+.experience-card .btn.edit:hover { opacity: 0.95; }
+
+
+/* Titoli campi */
+.field-title {
+font-weight: bold; /* grassetto */
+margin-top: 30px; /* spazio sopra */
+}
+
+/* Container bottoni azioni */
+.message-actions {
+margin-top: 20px; /* spazio sopra */
+display: flex; /* flex per pulsanti */
+gap: 10px; /* distanza tra pulsanti */
+flex-wrap: wrap; /* va a capo se non c'è spazio */
+}
+
+/* Sfondo pagina admin */
+.admin-bg {
+background-color: #2e3e55; /* match dashboard background */
+min-height: 100vh; /* altezza minima tutta finestra */
+padding: 100px 0 40px; /* spacing to account for fixed navbar */
+} 
+
+/* ===== Sezione Experience ===== */
+
+/* Contenitore principale */
+.admin-container {
+width: 90%;
+max-width: 1000px;
+margin: 30px auto;
+background: transparent;
+padding: 20px;
+border-radius: 8px;
+box-shadow: none;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Titoli */
+.admin-container h1 {
+text-align: center;
+margin-bottom: 20px;
+color: #fff;
+font-weight: 600;
+letter-spacing: 0.5px;
+font-size: 5rem;
+} 
+
+/* Tabella Experience */
+.admin-table {
+width: 100%;
+border-collapse: collapse;
+margin-top: 20px;
+}
+
+.admin-table th, .admin-table td {
+padding: 12px 16px;
+border-bottom: 1px solid rgba(255,255,255,0.06);
+background-color: transparent;
+color: #fff;
+border-radius: 0;
+box-shadow: none;
+transition: background-color 0.15s ease;
+}
+
+.admin-table th {
+background-color: transparent;
+color: rgba(255,255,255,0.9);
+font-weight: 600;
+text-transform: uppercase;
+font-size: 0.85rem;
+}
+
+.admin-table tr:hover td {
+background-color: rgba(255,255,255,0.035);
+transform: none;
+box-shadow: none;
+} 
+
+/* Bottoni tabella */
+.admin-table .btn {
+padding: 6px 12px;
+border-radius: 8px;
+color: #fff;
+text-decoration: none;
+font-size: 14px;
+font-weight: 500;
+transition: all 0.15s ease;
+background: transparent;
+border: 1px solid rgba(255,255,255,0.12);
+}
+
+.admin-table .btn.edit {
+border-color: rgba(34,197,94,0.15);
+}
+
+.admin-table .btn.delete {
+border-color: rgba(244,67,54,0.15);
+}
+
+.admin-table .btn:hover {
+background: rgba(255,255,255,0.06);
+transform:none;
+} 
+
+.new-experience {
+display: inline-block;
+margin-bottom: 20px;
+padding: 8px 14px;
+background: transparent;
+color: #fff;
+border-radius: 8px;
+text-decoration: none;
+font-weight: 600;
+border: 1px solid rgba(255,255,255,0.12);
+}
+
+.new-experience:hover {
+background: rgba(255,255,255,0.06);
+transform:none;
+} 
+
+/* Form Experience */
+.experience-card {
+background: linear-gradient(145deg, #ffffff, #f7f7f7); /* sfondo sfumato chiaro */
+padding: 30px; /* padding */
+border-radius: 20px; /* angoli arrotondati */
+box-shadow: 0 8px 20px rgba(0,0,0,0.08); /* ombra leggera */
+max-width: 650px; /* larghezza massima */
+margin: 0 auto 30px auto; /* centrato e margine sotto */
+}
+
+.experience-card label {
+display: block; /* label a blocco */
+margin-top: 18px; /* margine sopra */
+font-weight: 600; /* semi-grassetto */
+color: #333; /* colore testo */
+letter-spacing: 0.5px; /* spazio tra lettere */
+}
+
+.experience-card input,
+.experience-card textarea {
+width: 100%; /* piena larghezza */
+padding: 12px; /* padding interno */
+margin-top: 5px; /* spazio sopra */
+border-radius: 12px; /* angoli arrotondati */
+border: 1px solid #ccc; /* bordo chiaro */
+box-sizing: border-box; /* include padding nel width */
+background-color: #f0f0f0; /* sfondo chiaro */
+transition: all 0.3s ease; /* animazione focus */
+}
+
+.experience-card input:focus,
+.experience-card textarea:focus {
+outline: none; /* rimuove outline */
+border-color: #000000; /* bordo arancione */
+background-color: #fff; /* sfondo bianco */
+box-shadow: 0 2px 8px rgba(127, 90, 240, 0.2); /* leggera ombra */
+}
+
+.experience-card textarea {
+height: 140px; /* altezza textarea */
+resize: vertical; /* ridimensionabile verticalmente */
+}
+
+/* Pulsante salva nel form - versione più compatta */
+.experience-card .btn.edit {
+margin: 25px auto 0 auto;  /* centrato orizzontalmente */
+display: block;            /* necessario per margin auto */
+width: 200px;              /* larghezza fissa */
+padding: 12px 0;           /* altezza pulsante */
+background: linear-gradient(90deg, #4CAF50, #66bb6a); /* verde sfumato */
+font-size: 16px;           /* dimensione testo */
+font-weight: 600;          /* semi-grassetto */
+border: none;              /* nessun bordo */
+cursor: pointer;           /* puntatore mouse */
+border-radius: 12px;       /* angoli arrotondati */
+transition: all 0.3s ease; /* animazione */
+}
+
+.experience-card .btn.edit:hover {
+transform: scale(1.05); /* ingrandimento */
+background: linear-gradient(90deg, #43a047, #57bb5c); /* verde scuro sfumato */
+}
+
+/* Link indietro */
+.back {
+display: inline-block; /* inline-block */
+margin-top: 20px; /* margine sopra */
+color: #ffffff; /* colore testo nero */
+font-weight: 900; /* grassetto massimo */
+text-decoration: none; /* niente sottolineatura */
+transition: color 0.3s, transform 0.3s; /* animazione hover */
+}
+
+.back:hover {
+color: #3f749d; /* colore grigio chiaro */
+transform: translateX(-3px); /* spostamento leggero a sinistra */
+}
+
+
+.navbar .fa-lock,
+.navbar .fa-user-shield {
+    color: #888;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+}
+
+.navbar .fa-lock:hover,
+.navbar .fa-user-shield:hover {
+    color: #3A86FF; /* accent color */
+}
+
+/*==========================
+  ADMIN DASHBOARD
+===========================*/
+
+.admin-dashboard-page {
+    min-height: 100vh;
+    background-color: #2e3e55; /* consistent with your theme */
+}
+
+/* Wrapper compensates fixed navbar */
+.admin-dashboard-wrapper {
+    height: calc(100vh - 80px); /* navbar height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Card container */
+.admin-dashboard-cards {
+    display: flex;
+    gap: 60px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Cards */
+.admin-card {
+    width: 260px;
+    height: 200px;
+    background: #ffffff;
+    border-radius: 16px;
+    text-decoration: none;
+    color: #1e1e1e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-card i {
+    font-size: 2.6rem;
+    margin-bottom: 14px;
+}
+
+.admin-card h3 {
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+}
+
+.admin-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .admin-dashboard-cards {
+        flex-direction: column;
+        gap: 30px;
+    }
+}

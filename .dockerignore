@@ -1,0 +1,12 @@
+target/
+.git/
+.gitignore
+Dockerfile
+.dockerignore
+*.log
+*.tmp
+*.swp
+node_modules/
+*.iml
+.mvn/
+settings.xml
