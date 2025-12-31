@@ -16,17 +16,17 @@ public class AdminExperienceController {
         this.service = service;
     }
 
-   @GetMapping
+    @GetMapping
 public String list(Model model) {
     model.addAttribute("experiences", service.findAll());
-    return "admin/list";  // punta al template list.html
+    return "admin/experience/list";  // punta al template admin/experience/list.html
 }
 
 
     @GetMapping("/new")
 public String createForm(Model model) {
     model.addAttribute("experience", new ExperienceEntity());
-    return "admin/form";  // punta al template form.html
+    return "admin/experience/form";  // punta al template admin/experience/form.html
 }
 
 
@@ -37,10 +37,10 @@ public String save(@ModelAttribute ExperienceEntity experience) {
 }
 
 
-   @GetMapping("/edit/{id}")
+    @GetMapping("/edit/{id}")
 public String editForm(@PathVariable Long id, Model model) {
     model.addAttribute("experience", service.findById(id));
-    return "admin/form";  // usa lo stesso form.html
+    return "admin/experience/form";  // usa lo stesso form.html
 }
 
 
