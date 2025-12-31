@@ -250,8 +250,8 @@ personalProject/
 
 1. Vai su **http://localhost:8080/login**
 2. Inserisci le credenziali di default:
-   - **Username:** `admin`
-   - **Password:** `admin123`
+   - **Username:** `*****`
+   - **Password:** `*****`
 3. Verrai reindirizzato alla dashboard amministrativa
 
 ### Gestione Esperienze
