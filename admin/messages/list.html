@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin - Messages List</title>
+    <link rel="stylesheet" th:href="@{/libraries/bootstrap.min.css}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nobile:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 <body class="admin-bg">
@@ -10,6 +13,7 @@
 <div class="admin-container">
 
     <h1 style="color:#fff;text-align:center;">Messages List</h1>
+    <a th:href="@{/admin/dashboard}" class="btn back" style="margin-bottom:10px; display:inline-block;">← Dashboard</a>
 
     <table class="admin-table">
         <thead>

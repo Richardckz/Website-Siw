@@ -4,12 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin - Experience List</title>
+    <link rel="stylesheet" th:href="@{/libraries/bootstrap.min.css}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nobile:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 <body class="admin-bg">
 
 <div class="admin-container">
     <h1>Experience List</h1>
+    <a th:href="@{/admin/dashboard}" class="btn back">← Dashboard</a>
 
 <a th:href="@{/admin/experience/new}" class="new-experience">+ Add New Experience</a>
 
