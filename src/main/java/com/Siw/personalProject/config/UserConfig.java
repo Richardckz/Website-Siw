@@ -14,8 +14,8 @@ public class UserConfig {
     public UserDetailsService userDetailsService(PasswordEncoder encoder) {
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
         manager.createUser(
-            User.withUsername("****")
-                .password(encoder.encode("*****"))
+            User.withUsername("admin")
+                .password(encoder.encode("admin123"))
                 .roles("ADMIN")
                 .build()
         );
