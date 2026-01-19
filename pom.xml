@@ -101,18 +101,33 @@
         </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-       <plugin>
-  <groupId>org.apache.maven.plugins</groupId>
-  <artifactId>maven-compiler-plugin</artifactId>
-  <configuration>
-    <release>17</release> <!-- deve corrispondere a Java installato -->
-  </configuration>
-</plugin>
+<build>
+    <plugins>
+        <!-- Compilatore Maven -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.11.0</version>
+            <configuration>
+                <release>21</release> <!-- Deve corrispondere alla tua versione Java -->
+            </configuration>
+        </plugin>
 
+        <!-- Spring Boot Maven Plugin: necessario per generare il JAR eseguibile -->
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>4.0.1</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>repackage</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
 
-        </plugins>
-    </build>
 
 </project>
