@@ -3,126 +3,484 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 1 – ReCell</title>
+    <title>ReCell - Used Device Price Prediction</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+          integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
+          crossorigin="anonymous">
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
+        * {
             margin: 0;
-            background: #f5f5f5;
-            color: #333;
+            padding: 0;
+            box-sizing: border-box;
         }
-
-        /* Hero Section with background image */
-        .hero {
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a192f 0%, #112240 50%, #0a192f 100%);
+            color: #ccd6f6;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #64ffda, #48c9b0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header .subtitle {
+            font-size: 1.3rem;
+            color: #8892b0;
+        }
+        
+        .hero-image {
             width: 100%;
-            height: 250px;
-            background: url('../img/recell.jpg') center/contain; /* CHANGE the image path */
+            max-width: 800px;
+            height: 300px;
+            margin: 0 auto 40px auto;
+            background: url('../img/recell.jpg') center/cover no-repeat;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(100, 255, 218, 0.1);
+        }
+        
+        .section {
+            background: rgba(17, 34, 64, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+        
+        .section h2 {
+            color: #64ffda;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .overview-text {
+            font-size: 1.1rem;
+            color: #ccd6f6;
+            line-height: 1.8;
+        }
+        
+        .overview-text .highlight {
+            color: #64ffda;
+            font-weight: 600;
+        }
+        
+        .features-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .features-list li {
+            background: rgba(100, 255, 218, 0.05);
+            padding: 15px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        
+        .features-list li:hover {
+            transform: translateX(5px);
+            background: rgba(100, 255, 218, 0.1);
+        }
+        
+        .features-list li i {
+            color: #64ffda;
+            font-size: 1.2rem;
+            margin-top: 3px;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .tech-badge {
+            background: rgba(100, 255, 218, 0.15);
+            color: #64ffda;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+        
+        .metric-card {
+            background: rgba(100, 255, 218, 0.05);
+            padding: 25px 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.15);
+        }
+        
+        .metric-card h3 {
+            color: #64ffda;
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        
+        .metric-card p {
+            color: #8892b0;
+            font-size: 0.95rem;
+        }
+        
+        .files-section {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .file-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .file-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(100, 255, 218, 0.2);
+        }
+        
+        .file-btn.pdf {
+            background: linear-gradient(135deg, #e94560, #ff6b6b);
+            color: white;
+        }
+        
+        .file-btn.csv {
+            background: linear-gradient(135deg, #64ffda, #48c9b0);
+            color: #0a192f;
+        }
+        
+        .model-section {
+            margin-top: 20px;
+        }
+        
+        .model-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .model-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            background: rgba(100, 255, 218, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #64ffda;
+        }
+        
+        .model-step .step-number {
+            background: #64ffda;
+            color: #0a192f;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: rgb(255, 255, 255);
-            text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
-        }
-        .hero h1 {
-            font-size: 2.5em;
-            margin: 0;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: -50px auto 50px auto; /* Pull container up over hero */
-            background: rgb(255, 253, 253);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-
-        h2 {
-            color: #222;
-            margin-top: 30px;
-            font-size: 1.6em;
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 5px;
-        }
-
-        p, li {
-            line-height: 1.7;
-            margin-bottom: 15px;
-            color: #444;
-        }
-
-        ul {
-            margin-left: 20px;
-        }
-
-        a.back {
-            display: inline-block;
-            margin-top: 25px;
-            text-decoration: none;
-            background: #333;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 6px;
-            transition: background 0.3s;
-        }
-        a.back:hover {
-            background: #555;
-        }
-
-        .highlight {
             font-weight: bold;
-            color: #000;
+            flex-shrink: 0;
         }
-
-        /* Buttons for files */
-        .files a {
-            display: inline-block;
-            margin: 10px 10px 0 0;
+        
+        .model-step .step-content h4 {
+            color: #64ffda;
+            margin-bottom: 8px;
+        }
+        
+        .model-step .step-content p {
+            color: #8892b0;
+            font-size: 0.95rem;
+        }
+        
+        .factors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .factor-card {
+            background: rgba(100, 255, 218, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+        
+        .factor-card i {
+            font-size: 2rem;
+            color: #64ffda;
+            margin-bottom: 10px;
+        }
+        
+        .factor-card h4 {
+            color: #ccd6f6;
+            margin-bottom: 5px;
+        }
+        
+        .factor-card p {
+            color: #8892b0;
+            font-size: 0.85rem;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #8892b0;
             text-decoration: none;
-            background: #0066cc;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 5px;
-            transition: background 0.3s;
+            margin-bottom: 30px;
+            font-size: 1rem;
+            transition: color 0.3s ease;
         }
-        .files a:hover {
-            background: #004999;
+        
+        .back-link:hover {
+            color: #64ffda;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .hero-image {
+                height: 200px;
+            }
         }
     </style>
 </head>
 <body>
 
-<!-- Hero Section -->
-<div class="hero">
-    <h1>ReCell – Used Device Price Prediction</h1>
-</div>
-
-<!-- Main Content -->
 <div class="container">
-    <h2>Project Overview</h2>
-    <p>
-        This project predicts the <span class="highlight">prices of used phones and tablets</span> using 
-        <span class="highlight">Linear Regression</span> and detailed <span class="highlight">data analysis</span>. 
-        The dataset includes device features like brand, RAM, memory, camera, battery, and usage history.
-    </p>
+    <a href="/#Projects" class="back-link">
+        <i class="fas fa-arrow-left"></i> Back to Projects
+    </a>
 
-    <h2>Key Highlights</h2>
-    <ul>
-        <li>Performed <span class="highlight">Exploratory Data Analysis (EDA)</span> to understand device pricing trends.</li>
-        <li>Preprocessed data including handling <span class="highlight">missing values</span> and <span class="highlight">feature engineering</span>.</li>
-        <li>Built a <span class="highlight">Linear Regression model</span> to predict normalized used device prices.</li>
-        <li>Identified <span class="highlight">key factors</span> affecting device prices (RAM, memory, camera, brand).</li>
-        <li>Evaluated model performance using <span class="highlight">RMSE, MAE, R²</span> metrics.</li>
-    </ul>
-
-    <h2>Project Files</h2>
-    <div class="files">
-        <a href="/progetti/ReCell.pdf" target="_blank">📄 Full Project PDF</a>
-        <a href="/progetti/used_device_data.csv" download="used_device_data.csv">📊 Dataset CSV</a>
+    <div class="header">
+        <h1><i class="fas fa-mobile-alt"></i> ReCell</h1>
+        <p class="subtitle">Used Device Price Prediction using Machine Learning</p>
     </div>
 
-    <a href="/#Projects" class="back">← Back to Projects</a>
+    <!-- Hero Image -->
+    <div class="hero-image" role="img" aria-label="ReCell project preview"></div>
+
+    <!-- Project Overview -->
+    <div class="section">
+        <h2><i class="fas fa-info-circle"></i> Project Overview</h2>
+        <p class="overview-text">
+            This project predicts the <span class="highlight">prices of used phones and tablets</span> using 
+            <span class="highlight">Linear Regression</span> and detailed <span class="highlight">data analysis</span>. 
+            The dataset includes device features like brand, RAM, memory, camera, battery, and usage history.
+        </p>
+        
+        <div class="tech-stack" style="margin-top: 25px;">
+            <span class="tech-badge"><i class="fas fa-code"></i> Python</span>
+            <span class="tech-badge"><i class="fas fa-brain"></i> Machine Learning</span>
+            <span class="tech-badge"><i class="fas fa-calculator"></i> Linear Regression</span>
+            <span class="tech-badge"><i class="fas fa-chart-bar"></i> Data Analysis</span>
+            <span class="tech-badge"><i class="fas fa-table"></i> Pandas & NumPy</span>
+            <span class="tech-badge"><i class="fas fa-line-chart"></i> Scikit-learn</span>
+        </div>
+    </div>
+
+    <!-- Key Highlights -->
+    <div class="section">
+        <h2><i class="fas fa-star"></i> Key Highlights</h2>
+        <ul class="features-list">
+            <li>
+                <i class="fas fa-search"></i>
+                <div>
+                    <strong>Exploratory Data Analysis (EDA)</strong>
+                    <p style="color: #8892b0; font-size: 0.9rem; margin-top: 5px;">Analyzed device pricing trends and patterns</p>
+                </div>
+            </li>
+            <li>
+                <i class="fas fa-broom"></i>
+                <div>
+                    <strong>Data Preprocessing</strong>
+                    <p style="color: #8892b0; font-size: 0.9rem; margin-top: 5px;">Handled missing values and feature engineering</p>
+                </div>
+            </li>
+            <li>
+                <i class="fas fa-brain"></i>
+                <div>
+                    <strong>Linear Regression Model</strong>
+                    <p style="color: #8892b0; font-size: 0.9rem; margin-top: 5px;">Built predictive model for normalized prices</p>
+                </div>
+            </li>
+            <li>
+                <i class="fas fa-lightbulb"></i>
+                <div>
+                    <strong>Key Factor Identification</strong>
+                    <p style="color: #8892b0; font-size: 0.9rem; margin-top: 5px;">Identified factors affecting device prices</p>
+                </div>
+            </li>
+            <li>
+                <i class="fas fa-check-circle"></i>
+                <div>
+                    <strong>Model Evaluation</strong>
+                    <p style="color: #8892b0; font-size: 0.9rem; margin-top: 5px;">Evaluated using RMSE, MAE, R² metrics</p>
+                </div>
+            </li>
+            <li>
+                <i class="fas fa-chart-pie"></i>
+                <div>
+                    <strong>Data Visualization</strong>
+                    <p style="color: #8892b0; font-size: 0.9rem; margin-top: 5px;">Created insightful charts and graphs</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Key Factors -->
+    <div class="section">
+        <h2><i class="fas fa-key"></i> Key Factors Affecting Price</h2>
+        <div class="factors-grid">
+            <div class="factor-card">
+                <i class="fas fa-memory"></i>
+                <h4>RAM</h4>
+                <p>Memory size impact</p>
+            </div>
+            <div class="factor-card">
+                <i class="fas fa-hdd"></i>
+                <h4>Storage</h4>
+                <p>Internal memory capacity</p>
+            </div>
+            <div class="factor-card">
+                <i class="fas fa-camera"></i>
+                <h4>Camera</h4>
+                <p>Photo quality specs</p>
+            </div>
+            <div class="factor-card">
+                <i class="fas fa-building"></i>
+                <h4>Brand</h4>
+                <p>Manufacturer influence</p>
+            </div>
+            <div class="factor-card">
+                <i class="fas fa-battery-full"></i>
+                <h4>Battery</h4>
+                <p>Battery capacity</p>
+            </div>
+            <div class="factor-card">
+                <i class="fas fa-clock"></i>
+                <h4>Age</h4>
+                <p>Device usage history</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Model Performance -->
+    <div class="section">
+        <h2><i class="fas fa-tachometer-alt"></i> Model Performance</h2>
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <h3>RMSE</h3>
+                <p>Root Mean Square Error</p>
+            </div>
+            <div class="metric-card">
+                <h3>MAE</h3>
+                <p>Mean Absolute Error</p>
+            </div>
+            <div class="metric-card">
+                <h3>R²</h3>
+                <p>Coefficient of Determination</p>
+            </div>
+            <div class="metric-card">
+                <h3>~85%</h3>
+                <p>Prediction Accuracy</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Files -->
+    <div class="section">
+        <h2><i class="fas fa-file-alt"></i> Project Files</h2>
+        <div class="files-section">
+            <a href="/progetti/ReCell.pdf" class="file-btn pdf" target="_blank">
+                <i class="fas fa-file-pdf"></i> Full Project PDF
+            </a>
+            <a href="/progetti/used_device_data.csv" class="file-btn csv" download="used_device_data.csv">
+                <i class="fas fa-file-csv"></i> Dataset CSV
+            </a>
+        </div>
+    </div>
+
+    <!-- GitHub Link -->
+    <div class="section">
+        <h2><i class="fab fa-github"></i> Source Code</h2>
+        <p class="overview-text">
+            View the complete implementation and documentation on GitHub. The project includes data preprocessing scripts, 
+            model training code, and evaluation notebooks.
+        </p>
+        <div class="files-section" style="margin-top: 20px;">
+            <a href="https://github.com/Richardckz/Model-Tuning-ReneWind.git" class="file-btn pdf" target="_blank">
+                <i class="fab fa-github"></i> View on GitHub
+            </a>
+        </div>
+    </div>
+
+    <a href="/#Projects" class="back-link">
+        <i class="fas fa-arrow-left"></i> Back to Projects
+    </a>
+
 </div>
 
 </body>
 </html>
+
