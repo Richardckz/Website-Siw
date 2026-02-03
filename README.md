@@ -20,15 +20,6 @@ Portfolio personale sviluppato con Spring Boot.
 - PostgreSQL / H2
 - Thymeleaf, Bootstrap 5, jQuery
 
-## Installazione
-
-```bash
-# Build
-./mvnw clean package
-
-# Esecuzione
-java -jar target/personalProject-0.0.1-SNAPSHOT.jar
-```
 
 ## Configurazione
 
